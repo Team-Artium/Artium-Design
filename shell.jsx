@@ -160,7 +160,7 @@ window.Avatar = Avatar;
 function Sidebar({ route, setRoute }) {
   const items = [
     { grp: "메인" },
-    { id:"board",   label:"데모 게시판", ico: Icon.Compass, count: 142 },
+    { id:"home",    label:"데모 게시판", ico: Icon.Compass, count: 142 },
     { id:"inbox",   label:"받은 가사",   ico: Icon.Inbox, count: 7 },
     { grp: "작곡가" },
     { id:"upload",  label:"데모 업로드", ico: Icon.Upload },
@@ -225,7 +225,7 @@ function Topbar({ page, breadcrumb, goTo }) {
       padding:"0 32px",
     }}>
       {/* 뒤로가기 */}
-      <button className="btn ghost icon" onClick={() => goTo && goTo("board")} style={{color:"var(--text-2)"}}>
+      <button className="btn ghost icon" onClick={() => goTo && goTo("home")} style={{color:"var(--text-2)"}}>
         <Icon.ChevronLeft size={22}/>
       </button>
 

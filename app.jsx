@@ -9,7 +9,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 const SCREENS = [
   { id:"auth",          label:"로그인" },
   { id:"signup",        label:"회원가입" },
-  { id:"board",         label:"데모 게시판" },
+  { id:"home",          label:"데모 게시판" },
   { id:"detail",        label:"데모 상세" },
   { id:"upload",        label:"데모 업로드" },
   { id:"my",            label:"업로드한 데모곡" },
@@ -96,8 +96,8 @@ function App() {
   if (route === "participated")  return <><ScreenParticipatedDemos goTo={goTo}/><TweaksUI t={t} setTweak={setTweak} route={route} setRoute={setRoute}/></>;
   if (route === "lyrics-view")   return <><ScreenLyricsView demoId={detailId} goTo={goTo}/><TweaksUI t={t} setTweak={setTweak} route={route} setRoute={setRoute}/></>;
 
-  // board = 전체화면 (자체 탑바 포함)
-  if (route === "board") return <><ScreenBoard goTo={goTo}/><TweaksUI t={t} setTweak={setTweak} route={route} setRoute={setRoute}/></>;
+  // home = 전체화면 (자체 탑바 포함)
+  if (route === "home") return <><ScreenBoard goTo={goTo}/><TweaksUI t={t} setTweak={setTweak} route={route} setRoute={setRoute}/></>;
 
   // App shell (사이드바 + 탑바)
   const breadcrumb = {

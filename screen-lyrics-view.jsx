@@ -28,7 +28,7 @@ function ScreenLyricsView({ demoId, goTo }) {
         height:68, display:"flex", alignItems:"center", justifyContent:"space-between",
         padding:"0 40px",
       }}>
-        <div className="row middle" style={{ gap:10, cursor:"pointer" }} onClick={() => goTo("board")}>
+        <div className="row middle" style={{ gap:10, cursor:"pointer" }} onClick={() => goTo("home")}>
           <div style={{
             width:32, height:32, borderRadius:8,
             background:"var(--text)", color:"var(--bg)",

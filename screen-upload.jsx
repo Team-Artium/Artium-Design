@@ -156,8 +156,8 @@ function ScreenUpload({ goTo }) {
 
           {/* 제출 */}
           <div className="row" style={{justifyContent:"flex-end", gap:10}}>
-            <button className="btn outline" style={{height:48}} onClick={() => goTo("board")}>취소</button>
-            <button className="btn primary lg" style={{height:48}} onClick={() => goTo("board")}>
+            <button className="btn outline" style={{height:48}} onClick={() => goTo("home")}>취소</button>
+            <button className="btn primary lg" style={{height:48}} onClick={() => goTo("home")}>
               <Icon.Upload size={15}/> 업로드
             </button>
           </div>

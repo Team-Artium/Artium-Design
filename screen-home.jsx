@@ -32,10 +32,10 @@ function ScreenHome({ goTo }) {
               : "오늘 새로 올라온 데모 18곡. 마음에 닿는 멜로디를 찾고, 한 줄로 시작해보세요. 채택률 높은 작사가는 평균 4시간 안에 첫 메모를 보냅니다."}
           </p>
           <div className="row" style={{gap:10}}>
-            <button className="btn primary lg" onClick={() => goTo(isComposer ? "upload" : "board")}>
+            <button className="btn primary lg" onClick={() => goTo(isComposer ? "upload" : "home")}>
               {isComposer ? <><Icon.Upload size={16}/> 새 데모 업로드</> : <><Icon.Compass size={16}/> 데모 둘러보기</>}
             </button>
-            <button className="btn lg outline" onClick={() => goTo("board")}>
+            <button className="btn lg outline" onClick={() => goTo("home")}>
               {isComposer ? "작사가 직접 의뢰" : "큐레이션 받기"} <Icon.ArrowRight size={15}/>
             </button>
           </div>
@@ -65,7 +65,7 @@ function ScreenHome({ goTo }) {
             <div className="eyebrow">오늘의 추천</div>
             <h2 className="h-2">에디터가 고른 데모</h2>
           </div>
-          <button className="btn sm ghost" onClick={() => goTo("board")}>
+          <button className="btn sm ghost" onClick={() => goTo("home")}>
             전체 보기 <Icon.ArrowRight size={14}/>
           </button>
         </div>
@@ -186,7 +186,7 @@ function ScreenHome({ goTo }) {
         <div className="row" style={{gap:10, flexWrap:"wrap"}}>
           {D.GENRES.map((g, i) => (
             <button key={g} className="card"
-              onClick={() => goTo("board")}
+              onClick={() => goTo("home")}
               style={{
                 cursor:"pointer", padding:"18px 22px",
                 minWidth: 152, textAlign:"left",

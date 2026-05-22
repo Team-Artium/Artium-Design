@@ -477,7 +477,7 @@ function ScreenSignup({ goTo }) {
 
             {/* 가입 완료 버튼 */}
             <button className="btn primary xl" style={{ width:"100%", borderRadius:14, marginTop:4 }}
-              onClick={() => goTo("board")}>
+              onClick={() => goTo("home")}>
               가입 완료
             </button>
           </div>

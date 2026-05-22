@@ -36,7 +36,7 @@ function ScreenDemoDetail({ demoId, goTo }) {
 
         {/* Back link */}
         <button className="btn ghost sm" style={{ alignSelf: "flex-start", marginBottom: 16, color: "var(--text-2)", display: "flex", alignItems: "center", gap: 6 }}
-        onClick={() => goTo("board")}>
+        onClick={() => goTo("home")}>
           <Icon.ChevronLeft size={15} /> 게시판으로
         </button>
 
