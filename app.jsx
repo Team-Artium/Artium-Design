@@ -3,7 +3,7 @@
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accent": "vermillion",
   "layoutMode": "feed",
-  "startScreen": "board"
+  "startScreen": "auth"
 }/*EDITMODE-END*/;
 
 const SCREENS = [
@@ -20,10 +20,29 @@ const SCREENS = [
   { id:"billing",       label:"플랜 & 결제" },
 ];
 
+// ───────── Hash routing ─────────
+// GitHub Pages has no SPA fallback, so URL state lives in the hash.
+// Format: "#/<route>" or "#/<route>/<param>" (e.g. "#/detail/d-101").
+const ROUTE_IDS = SCREENS.map(s => s.id);
+const PARAM_ROUTES = ["detail", "lyrics-view"]; // routes that carry a demo id
+
+function parseHash() {
+  const raw = window.location.hash.replace(/^#\/?/, "");
+  const [route, param] = raw.split("/");
+  if (ROUTE_IDS.includes(route)) return { route, param: param || null };
+  return { route: null, param: null };
+}
+
+function buildHash(route, param) {
+  return param && PARAM_ROUTES.includes(route) ? `#/${route}/${param}` : `#/${route}`;
+}
+
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [route, setRouteState] = React.useState(t.startScreen || "home");
-  const [detailId, setDetailId] = React.useState("d-101");
+  // First page is the login screen unless the URL hash points elsewhere.
+  const initial = parseHash();
+  const [route, setRouteState] = React.useState(initial.route || t.startScreen || "auth");
+  const [detailId, setDetailId] = React.useState(initial.param || "d-101");
 
   // Apply theme + accent at document level
   React.useEffect(() => {
@@ -31,14 +50,42 @@ function App() {
     document.documentElement.dataset.accent = t.accent;
   }, [t.theme, t.accent]);
 
-  const setRoute = React.useCallback((r) => {
+  // Ensure the hash always reflects the current route — so a refresh or a
+  // direct link lands on the right screen. Runs once on mount.
+  React.useEffect(() => {
+    const { route: r } = parseHash();
+    if (!r) {
+      window.history.replaceState(null, "", buildHash(route, detailId));
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Browser back/forward + manual hash edits.
+  React.useEffect(() => {
+    const onHashChange = () => {
+      const { route: r, param } = parseHash();
+      if (!r) return;
+      if (param) setDetailId(param);
+      setRouteState(r);
+      window.scrollTo({ top: 0, behavior: "instant" });
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  const setRoute = React.useCallback((r, param) => {
+    const hash = buildHash(r, param);
+    if (window.location.hash !== hash) window.location.hash = hash;
     setRouteState(r);
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
   const goTo = React.useCallback((r, payload) => {
-    if (r === "detail" && payload) setDetailId(payload);
-    setRoute(r);
+    if (PARAM_ROUTES.includes(r) && payload) {
+      setDetailId(payload);
+      setRoute(r, payload);
+    } else {
+      setRoute(r);
+    }
   }, [setRoute]);
 
   // Whole-screen routes (no app shell)
