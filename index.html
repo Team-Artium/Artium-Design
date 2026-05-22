@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=1440"/>
+<title>ARTIUM Connect-E — 작곡가 × 작사가 마켓플레이스</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- React + Babel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Data -->
+<script src="data.js"></script>
+
+<!-- Tweaks panel (shared) -->
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<!-- Shared shell + screens -->
+<script type="text/babel" src="shell.jsx"></script>
+<script type="text/babel" src="screen-home.jsx"></script>
+<script type="text/babel" src="screen-board.jsx"></script>
+<script type="text/babel" src="screen-demo.jsx"></script>
+<script type="text/babel" src="screen-upload.jsx"></script>
+<script type="text/babel" src="screen-auth.jsx"></script>
+<script type="text/babel" src="screen-profile.jsx"></script>
+
+<script type="text/babel" src="screen-lyrics-view.jsx"></script>
+<script type="text/babel" src="screen-participated-demos.jsx"></script>
+<script type="text/babel" src="screen-my-demos.jsx"></script>
+
+<!-- Main app -->
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
