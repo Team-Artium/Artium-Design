@@ -11,6 +11,8 @@ function ScreenUpload({ goTo }) {
   const [country, setCountry] = React.useState([]);
   const [instrument, setInstrument] = React.useState([]);
   const [audioFile, setAudioFile] = React.useState(null);
+  const [preview, setPreview] = React.useState(15); // 기본 15초 미리듣기, null = 미리듣기 없음
+  const PREVIEW_OPTIONS = [15, 30, 45, 60];
   const FILENAME_HINT = "곡제목_BPM_키_가이드여부.mp3";
   const audioValid = audioFile ? /^.+_\d+bpm_.+\.(mp3|wav|m4a)$/i.test(audioFile) : true;
 
@@ -150,6 +152,20 @@ function ScreenUpload({ goTo }) {
               </select>
             </div>
             <div className="caption">마감 시간 이후 가사 제출이 불가합니다.</div>
+          </div>
+
+          {/* 미리듣기 설정 */}
+          <div className="field">
+            <label>미리듣기</label>
+            <div className="caption" style={{marginBottom:8}}>참여자에게 곡 도입부만 공개됩니다. 기본 15초.</div>
+            <div className="row" style={{gap:6, flexWrap:"wrap"}}>
+              {PREVIEW_OPTIONS.map(sec => (
+                <button key={sec} className={"chip " + (preview === sec ? "active" : "")}
+                  onClick={() => setPreview(sec)}>{sec}초</button>
+              ))}
+              <button className={"chip " + (preview === null ? "active" : "")}
+                onClick={() => setPreview(null)}>미리듣기 없음</button>
+            </div>
           </div>
 
           <div className="divider"/>
